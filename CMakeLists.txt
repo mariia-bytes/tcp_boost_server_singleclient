@@ -14,8 +14,12 @@ find_package(Boost REQUIRED COMPONENTS system)
 include_directories(${Boost_INCLUDE_DIRS})
 
 # Add executables for client and server
-add_executable(boost_client boost_client.cpp)
-add_executable(boost_server boost_server.cpp)
+add_executable(boost_client 
+    boost_client.cpp
+    common.cpp)
+add_executable(boost_server 
+    boost_server.cpp
+    common.cpp)
 
 # Link Boost libraries to the executables
 target_link_libraries(boost_client ${Boost_LIBRARIES})
