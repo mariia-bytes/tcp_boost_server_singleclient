@@ -8,7 +8,7 @@ RUN apt-get update && apt-get install -y \
 
 WORKDIR /app
 
-COPY boost_server.cpp boost_client.cpp common.h common.cpp CMakeLists.txt .
+COPY boost_server.cpp boost_client.cpp common.h common.cpp CMakeLists.txt ./
 
 RUN mkdir build && cd build && \
     cmake .. && \
