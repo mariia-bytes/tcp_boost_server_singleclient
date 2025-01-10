@@ -5,27 +5,6 @@
 using namespace boost::asio;
 using ip::tcp;
 
-/*
-static const std::string ip_address = "127.0.0.1"; // default ip_address
-static unsigned short port = 55000; // default port
-
-std::string read_message(tcp::socket& socket) {
-    boost::asio::streambuf buffer;
-    boost::asio::read_until(socket, buffer, "\n");
-
-    std::istream stream(&buffer);
-    std::string message;
-    std::getline(stream, message);
-    
-    return message;
-}
-
-void send_message(tcp::socket& socket, const std::string& message) {
-    const std::string msg = message + "\n";
-    boost::asio::write(socket, boost::asio::buffer(msg));
-}
-*/
-
 int main(int argc, char* argv[]) {
     // determine the port from command-line argument or use default
     if (argc > 1) {
@@ -60,7 +39,7 @@ int main(int argc, char* argv[]) {
 
         // send a response message to the client
         common::send_message(client_socket, "Hello from Server!");
-        std::cout << "\nServer sent: " << message << std::endl;
+        std::cout << "Server sent: " << message << std::endl;
 
         // notify about shutdown
         std::cout << "\nShutting down the server..." << std::endl;

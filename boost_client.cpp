@@ -5,11 +5,6 @@
 using namespace boost::asio;
 using ip::tcp;
 
-/*
-static const std::string ip_address = "127.0.0.1"; // default IP_address
-static unsigned short port = 55000; // default port
-*/
-
 int main(int argc, char* argv[]) {
     // determine the port from command-line argument or use default
     if (argc > 1) {
@@ -37,44 +32,14 @@ int main(int argc, char* argv[]) {
         std::cout << "\nConnection to " << common::ip_address 
                   << ":" << common::port << " established" << std::endl;
 
-        /*
-        // Sending a message to the server
-        const std::string message = "Hello from Client!\n";
-        boost::system::error_code error;
-        boost::asio::write(connection_socket, boost::asio::buffer(message), error);
-
-        if (!error) {
-            std::cout << "\nClient sent: " << message;
-        } else {
-            std::cerr << "Send failed: " << error.message() << std::endl;
-            return 1;
-        }
-
-        // Receiving response from the server
-        boost::asio::streambuf receive_buffer;
-        boost::asio::read_until(connection_socket, receive_buffer, "\n", error);
-
-        if (error && error != boost::asio::error::eof) {
-            std::cerr << "Receive failed: " << error.message() << std::endl;
-        } else {
-            std::istream response_stream(&receive_buffer);
-            std::string response_message;
-            std::getline(response_stream, response_message);
-
-            std::cout << "\nServer> " << response_message << std::endl;
-        }
-        */
-
         common::send_message(connection_socket, "Hello from Client!");
         std::cout << "\nClient sent: Hello from Client!" << std::endl;
 
         std::string response_message = common::read_message(connection_socket);
-        std::cout << "\nServer> " << response_message << std::endl;
-
-        
+        std::cout << "Server> " << response_message << std::endl;
 
         // notify about shutdown
-        std::cout << "Shutting down connection..." << std::endl;
+        std::cout << "\nShutting down the client..." << std::endl;
 
         // Closing the socket
         connection_socket.close();
