@@ -5,7 +5,8 @@ This project is a minimal implementation of a TCP server-client architecture usi
 ## Features
 - **Simple TCP Server and Client:** Establishes a connection between a server and a client using Boost ASIO.
 - **Single Client Support:** Designed to handle one client connection at a time.
-- **Localhost Communication:** Ideal for local testing using `127.0.0.1` and an available port.
+- **Localhost Communication:** Establishes connction on localhost (`127.0.0.1`) and an available port (default port 55000 or customizable).
+- **Message exchange:** Server and client exchange messages and terminate the connection.
 
 ⚠ **Note:** This project will not be improved further. Instead, a future project will expand upon this concept to support multiple client connections.
 
@@ -14,6 +15,10 @@ This project is a minimal implementation of a TCP server-client architecture usi
 ## Getting Started
 
 ### Prerequisites
+The project can be build and run either with Docker *or* manually.
+#### To build and run with Docker
+- Docker installed for containerized builds and execution
+#### To build and run manually
 - C++ compiler with C++17 or later support
 - Boost libraries installed (specifically, Boost ASIO)
 - CMake (minimum version 3.10)
@@ -24,7 +29,19 @@ Clone this repository to your local machine:
 git clone https://github.com/mariia-bytes/tcp_boost_server_singleclient.git
 cd tcp_boost_server_singleclient
 ```
-### Building the Project
+### Building and running the Project with Docker
+1. Build a Docker image:
+```bash
+docker build -t boost-server-app .
+```
+*Note: you might need to use sudo to execute Docker commands*
+2. Run the Docker container
+```bash
+docker run boost-server-app
+```
+
+
+### Building and running the project manually
 1. Create a build directory:
 ```bash
 mkdir build && cd build
@@ -37,31 +54,35 @@ cmake ..
 ```bash
 make
 ```
-### Running the Project
-After building, you can run the server and client executables:
-
-- Start the server:
+4. Start the server:
 ```bash
 ./boost_server
 ```
-- Start the client in a separate terminal:
+5. Start the client in a separate terminal:
 ```bash
 ./boost_client
 ```
-When prompted, use the following details to establish a connection:
-- IP Address: 127.0.0.1 (for localhost)
-- Port Number: Any available port (e.g., 55000)
 
-### Usage Example
+#### Usage Example
 1. Start the server:
 ```bash
 ./boost_server
 ```
-2. Enter the IP address and port (e.g., 127.0.0.1 and 55000).
+*or*
+```bash
+./boost-_server <port_number>
+```
 3. Start the client:
 ```bash
 ./boost_client
 ```
-4. Enter the same IP address and port in the client as used for the server.
+*or*
+```bash
+./boost_client <same_port_number>
+```
 
 ***Once the connection is established, the server and client exchange a "hello" message before the program terminates.***
+
+---
+
+*This project began on January 6th, 2024*

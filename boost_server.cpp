@@ -21,6 +21,7 @@ int main(int argc, char* argv[]) {
 
         // create endpoint from user input
         tcp::endpoint endpoint(boost::asio::ip::address::from_string(common::ip_address), common::port);
+        // tcp::endpoint endpoint(boost::asio::ip::address::from_string("server"), common::port);
         
         // setup acceptor and bind to the endpoint
         tcp::acceptor server_acceptor(io_context, endpoint);
@@ -32,6 +33,10 @@ int main(int argc, char* argv[]) {
         
         // wait for connection
         server_acceptor.accept(client_socket);
+
+        // notify the server that the client's connectes
+        std::cout << "Client connected on " << client_socket.remote_endpoint().address().to_string()
+                  << ":" << client_socket.remote_endpoint().port() << std::endl;
 
         // read client's message
         std::string message = common::read_message(client_socket);

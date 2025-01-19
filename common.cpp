@@ -2,7 +2,7 @@
 #include <iostream>
 
 namespace common {
-    const std::string ip_address = "127.0.0.1"; // default IP_address
+    const std::string ip_address = "0.0.0.0"; // default IP_address
     unsigned short port = 55000; // default port
 
     std::string read_message(boost::asio::ip::tcp::socket& socket) {
