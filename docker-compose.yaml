@@ -8,25 +8,14 @@ services:
       dockerfile: Dockerfile.server
     ports:
       - "55000:55000"
-    networks:
-      - mynetwork
-    healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:55000"]
-      interval: 10s
-      retries: 5
-      start_period: 30s
-      timeout: 5s
+    command: ./build/boost_server
 
   client:
     image: client
     build:
       context: .
       dockerfile: Dockerfile.client
-    networks:
-      - mynetwork
+    command: ./build/boost_client
+    network_mode: host
     depends_on:
       - server
-
-networks:
-  mynetwork:
-    driver: bridge

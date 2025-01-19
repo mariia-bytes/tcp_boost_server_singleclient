@@ -21,7 +21,6 @@ int main(int argc, char* argv[]) {
 
         // create endpoint from user input
         tcp::endpoint endpoint(boost::asio::ip::address::from_string(common::ip_address), common::port);
-        // tcp::endpoint endpoint(boost::asio::ip::address::from_string("server"), common::port);
         
         // setup acceptor and bind to the endpoint
         tcp::acceptor server_acceptor(io_context, endpoint);
