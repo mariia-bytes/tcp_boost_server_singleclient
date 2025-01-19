@@ -16,4 +16,5 @@ RUN mkdir build && cd build && \
 
 EXPOSE 55000
 
-CMD ["bash", "-c", "./build/boost_server & ./build/boost_client"]
+# use this line to run both server and client from one container
+# CMD ["bash", "-c", "./build/boost_server & ./build/boost_client"]

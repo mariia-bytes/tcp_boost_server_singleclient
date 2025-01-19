@@ -2,3 +2,6 @@
 .gitignore
 README.md
 build/
+docker-compose.yaml
+run_docker.sh
+run_docker
